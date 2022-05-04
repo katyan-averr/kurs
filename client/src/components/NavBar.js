@@ -6,18 +6,18 @@ import Container from 'react-bootstrap/Container'
 import { NavLink } from 'react-router-dom';
 import { SHOP_ROUTE } from '../utils/consts';
 import {Button} from 'react-bootstrap'
-import { Observer } from 'mobx-react-lite';
+import { observer } from 'mobx-react-lite';
 
-const NavBar = Observer(() => {
+const NavBar = observer(() => {
     const {user} = useContext(Context)
     return (
         <Navbar bg="dark" variant="dark">
             <Container>
-            <NavLink style={{color:'white'}} to={SHOP_ROUTE}>Это программа сдохни или умри</NavLink>
+            <NavLink style={{color:'white'}} to={SHOP_ROUTE}>ПоставьтеПятьПожалуйста</NavLink>
             {user.isAuth ?
              <Nav className="ml-auto" style={{color:'white'}}>
                 <Button variant={'outline-light'}>Добавить</Button>
-                <Button variant={'outline-light'}>Выйти</Button>
+                <Button variant={'outline-light'} style={{marginLeft:'20px'}}>Выйти</Button>
             </Nav>
             :
             <Nav className="ml-auto" style={{color:'white'}}>
