@@ -11,7 +11,7 @@ export default class ProductStore{
             {id: 1, name:"Rise", author:"Skillet", price: 100, img:`https://cdns-images.dzcdn.net/images/cover/8371d7162676a323868ca2e2f5cf4fc4/1000x1000.jpg`},
             {id: 2, name:"Rise", author:"Skillet", price: 100, img:`https://cdns-images.dzcdn.net/images/cover/8371d7162676a323868ca2e2f5cf4fc4/1000x1000.jpg`},
             {id: 3, name:"Rise", author:"Skillet", price: 100, img:`https://cdns-images.dzcdn.net/images/cover/8371d7162676a323868ca2e2f5cf4fc4/1000x1000.jpg`},
-            {id: 4, name:"Rise", author:"Skillet", price: 100, img:`https://cdns-images.dzcdn.net/images/cover/8371d7162676a323868ca2e2f5cf4fc4/1000x1000.jpg`}
+            {id: 4, name:"Rise", author:"Skillet", price: 100, img:`https://cdns-images.dzcdn.net/images/cover/8371d7162676a323868ca2e2f5cf4fc4/1000x1000.jpg`},
         ]
         this._selectedType ={}
         makeAutoObservable(this)
