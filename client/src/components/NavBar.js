@@ -15,19 +15,25 @@ const NavBar = observer(() => {
     const redirect = path => {
         history(path);
       };
+
+    const logOut = () => {
+      user.setUser({})
+      user.setIsAuth(false)          
+    }
+
     return (
         <Navbar bg="dark" variant="dark">
             <Container>
-            <NavLink style={{color:'white'}} to={SHOP_ROUTE}>ПоставьтеПятьПожалуйста</NavLink>
+            <NavLink style={{color:'white'}} to={SHOP_ROUTE}>MusicShop</NavLink>
             {user.isAuth ?
              <Nav className="ml-auto" style={{color:'white'}}>
                 <Image style={{marginRight:'20px', cursor:'pointer'}} onClick={() => redirect(BASKET_ROUTE)} widh={35} height={35} src={"https://nusasurfwear.com/images/icon-cart.png"}/>
                 <Button variant={'outline-light'} onClick={() => redirect(ADMIN_ROUTE)}>Добавить</Button>
-                <Button variant={'outline-light'} style={{marginLeft:'20px'}} onClick={() => redirect(LOGIN_ROUTE)}>Выйти</Button>
+                <Button variant={'outline-light'} style={{marginLeft:'20px'}} onClick={() => logOut()}>Выйти</Button>
             </Nav>
             :
             <Nav className="ml-auto" style={{color:'white'}}>
-                <Button variant={'outline-light'} onClick={() => user.setIsAuth(true)}>Авторизация</Button>
+                <Button variant={'outline-light'} onClick={() => redirect(LOGIN_ROUTE)}>Авторизация</Button>
             </Nav>
             }
             </Container>

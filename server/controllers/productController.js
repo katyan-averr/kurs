@@ -1,19 +1,19 @@
 const uuid = require('uuid')
 const path = require('path')
-const {Product} = require('../models/models')
+const {Productt} = require('../models/models')
 const ApiError = require('../error/ApiError')
 
 class ProductController{
     async create(req, res, next){
         try{
-        let {name, author, price, typeId} = req.body
+        let {name, author, artist, price, typeId, genreId} = req.body
         const {img} = req.files
         let fileName = uuid.v4() + ".jpg"
         img.mv(path.resolve(__dirname, '..', 'static', fileName))
 
-        const product = await Product.create({name, price, author, typeId, img: fileName})
+        const productt = await Productt.create({name, price, author, artist, typeId, genreId, img: fileName})
 
-        return res.json(product) 
+        return res.json(productt) 
         } catch(e){
             next(ApiError.badRequest(e.message))
         }
@@ -21,24 +21,30 @@ class ProductController{
     }
 
     async getAll(req, res){
-        let {typeId, limit, page} = req.query
+        let {typeId, genreId, limit, page} = req.query
         page = page || 1
         limit = limit || 9
         let offset = page * limit - limit
-        let products;
-        if (!typeId){
-            products =await Product.findAndCountAll({limit, offset})
+        let productts;
+        if (!typeId && !genreId){
+            productts =await Productt.findAndCountAll({limit, offset})
         }
-        if (typeId){
-            products =await Product.findAndCountAll({where:{typeId}, limit, offset})
+        if (typeId && !genreId){
+            productts =await Productt.findAndCountAll({where:{typeId}})
         }
-        return res.json(products)
+        if (!typeId && genreId){
+            productts =await Productt.findAndCountAll({where:{genreId}})
+        }
+        if (typeId && genreId){
+            productts =await Productt.findAndCountAll({where:{typeId},where:{genreId}, limit, offset})
+        }
+        return res.json(productts)
     }
 
     async getOne(req, res){
         const {id} = req.params
-        const product = await Product.findOne({where:{id}})
-        return res.json(product)
+        const productt = await Productt.findOne({where:{id}})
+        return res.json(productt)
     }
 }
 

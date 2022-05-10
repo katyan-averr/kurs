@@ -4,15 +4,15 @@ import { ListGroup } from 'react-bootstrap';
 import { Context } from '..';
 
 const TypeBar = observer( () => {
-    const {product} = useContext(Context)
+    const {productt} = useContext(Context)
     return (
         
         <ListGroup className={"mt-4"}>
-            {product.types.map(type =>
+            {productt.types.map(type =>
             <ListGroup.Item 
                 style={{cursor:'pointer'}}
-                active={type.id === product.selectedType.id}
-                onClick={() => product.setSelectedType(type)}
+                active={type.id === productt.selectedType.id}
+                onClick={() => productt.setSelectedType(type)}
                 key={type.id}
             >
                 {type.name}

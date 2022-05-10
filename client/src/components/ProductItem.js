@@ -3,22 +3,22 @@ import { Card, Col, Image } from 'react-bootstrap';
 import {useNavigate} from "react-router-dom"
 import { PRODUCT_ROUTE } from '../utils/consts';
 
-const ProductItem =  ({product}) => {
+const ProductItem =  ({productt}) => {
     const history = useNavigate()
     const redirect = path => {
         history(path);
       };
     return (
-        <Col md={3} className={"mt-4"} onClick={() => redirect(PRODUCT_ROUTE + '/' + product.id)}>
-            <Card style ={{width: 150, cursor:'pointer'}} border={"black"}>
-                <Image width={150} height={150} src={product.img}/>
+        <Col md={3} className={"mt-4"} onClick={() => redirect(PRODUCT_ROUTE + '/' + productt.id)}>
+            <Card style ={{width: 191, cursor:'pointer'}} border={"black"}>
+                <Image width={190} height={190} src={process.env.REACT_APP_API_URL + productt.img}/>
                 <div className='text-black-50 d-flex justify-content-between align-items-center'>
-                    <div>{product.author}</div>
+                    <div>{productt.author}</div>
                     
                 </div>
                 <div className=' d-flex justify-content-between align-items-center'>
-                    <div>{product.name}</div>
-                    <div>{product.price} руб.</div>
+                    <div>{productt.name}</div>
+                    <div>{productt.price} руб.</div>
                 </div>
                 
             </Card>

@@ -2,39 +2,63 @@ import {makeAutoObservable} from "mobx";
 
 export default class ProductStore{
     constructor() {
-        this._types = [
-            {id: 1, name:"Диски"},
-            {id: 2, name:"Кассеты"},
-            {id: 3, name:"Пластинки"}
-        ]
-        this._products = [
-            {id: 1, name:"Rise", author:"Skillet", price: 100, img:`https://cdns-images.dzcdn.net/images/cover/8371d7162676a323868ca2e2f5cf4fc4/1000x1000.jpg`},
-            {id: 2, name:"Rise", author:"Skillet", price: 100, img:`https://cdns-images.dzcdn.net/images/cover/8371d7162676a323868ca2e2f5cf4fc4/1000x1000.jpg`},
-            {id: 3, name:"Rise", author:"Skillet", price: 100, img:`https://cdns-images.dzcdn.net/images/cover/8371d7162676a323868ca2e2f5cf4fc4/1000x1000.jpg`},
-            {id: 4, name:"Rise", author:"Skillet", price: 100, img:`https://cdns-images.dzcdn.net/images/cover/8371d7162676a323868ca2e2f5cf4fc4/1000x1000.jpg`},
-        ]
+        this._types = []
+        this._genres = []
+        this._productts = []
         this._selectedType ={}
+        this._selectedGener ={}
+        this._page = 1
+        this._totalCount = 0
+        this._limit = 3
         makeAutoObservable(this)
     }
 
     setTypes(types){
         this._types = types
     }
-    setProducts(products){
-        this._products = products
+    setGeners(genres){
+        this._genres = genres
+    }
+    setProducts(productts){
+        this._productts = productts
     }
 
     setSelectedType(type){
         this._selectedType = type
     }
+    setSelectedGener(genre){
+        this._selectedGener = genre
+    }
+
+    setPage(page){
+        this._page = page
+    }
+    setTotalCount(count){
+        this._totalCount = count
+    }
 
     get types(){
         return this._types
     }
-    get products(){
-        return this._products
+    get genres(){
+        return this._genres
+    }
+    get productts(){
+        return this._productts
     }
     get selectedType(){
         return this._selectedType
+    }
+    get selectedGener(){
+        return this._selectedGener
+    }
+    get totalCount(){
+        return this._totalCount
+    }
+    get page(){
+        return this._page
+    }
+    get limit(){
+        return this._limit
     }
 }
