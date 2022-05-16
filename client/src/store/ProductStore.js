@@ -4,7 +4,7 @@ export default class ProductStore{
     constructor() {
         this._types = []
         this._genres = []
-        this._productts = []
+        this._producttts = []
         this._selectedType ={}
         this._selectedGener ={}
         this._page = 1
@@ -19,8 +19,8 @@ export default class ProductStore{
     setGeners(genres){
         this._genres = genres
     }
-    setProducts(productts){
-        this._productts = productts
+    setProducts(producttts){
+        this._producttts = producttts
     }
 
     setSelectedType(type){
@@ -43,8 +43,8 @@ export default class ProductStore{
     get genres(){
         return this._genres
     }
-    get productts(){
-        return this._productts
+    get producttts(){
+        return this._producttts
     }
     get selectedType(){
         return this._selectedType

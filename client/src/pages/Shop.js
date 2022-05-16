@@ -11,23 +11,23 @@ import Pages from '../components/Pages';
 
 
 const Shop = observer(() => {
-    const {productt} = useContext(Context)
+    const {producttt} = useContext(Context)
 
     useEffect(() => {
-        fetchTypes().then(data => productt.setTypes(data))
-        fetchGeners().then(data => productt.setGeners(data))
+        fetchTypes().then(data => producttt.setTypes(data))
+        fetchGeners().then(data => producttt.setGeners(data))
         fetchProducts(null, null, 1, 4).then(data => {
-            productt.setProducts(data.rows)
-            productt.setTotalCount(data.count)
+            producttt.setProducts(data.rows)
+            producttt.setTotalCount(data.count)
         })
     }, [])
 
     useEffect(() => {
-        fetchProducts(productt.selectedType.id, productt.selectedGener.id, productt.page, 4).then(data => {
-            productt.setProducts(data.rows)
-            productt.setTotalCount(data.count)
+        fetchProducts(producttt.selectedType.id, producttt.selectedGener.id, producttt.page, 4).then(data => {
+            producttt.setProducts(data.rows)
+            producttt.setTotalCount(data.count)
         })
-    }, [productt.page, productt.selectedType, productt.selectedGener])
+    }, [producttt.page, producttt.selectedType, producttt.selectedGener])
 
     return (
         <Container>
@@ -36,7 +36,7 @@ const Shop = observer(() => {
                     <TypeBar />
                 </Col>
                 <Col md={9}>
-                    <Search />
+                    {/* <Search /> */}
                     <GenerBar />
                     <ProductList />
                     <Pages />

@@ -16,21 +16,24 @@ const Basket_Product = sequelize.define('basket_product', {
     id:{type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true}
 })
 
-// const Product = sequelize.define('product', {
+
+// const Productt = sequelize.define('productt', {
 //     id:{type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
 //     name: {type: DataTypes.STRING, unique: true, allowNull: false},
 //     author: {type: DataTypes.STRING, unique: true, allowNull: false},
 //     artist: {type: DataTypes.STRING, unique: true, allowNull: false},
 //     price: {type: DataTypes.INTEGER, unique: true, allowNull: false},
+//     descrip: {type: DataTypes.STRING, unique: true, allowNull: false},
 //     img:{type: DataTypes.STRING, allowNull: false}
 // })
 
-const Productt = sequelize.define('productt', {
+const Producttt = sequelize.define('producttt', {
     id:{type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
     name: {type: DataTypes.STRING, unique: true, allowNull: false},
     author: {type: DataTypes.STRING, unique: true, allowNull: false},
     artist: {type: DataTypes.STRING, unique: true, allowNull: false},
     price: {type: DataTypes.INTEGER, unique: true, allowNull: false},
+    descrip: {type: DataTypes.STRING, unique: true, allowNull: false},
     img:{type: DataTypes.STRING, allowNull: false}
 })
 
@@ -50,26 +53,20 @@ Basket.belongsTo(User)
 Basket.hasMany(Basket_Product)
 Basket_Product.belongsTo(Basket)
 
-// Type.hasMany(Product)
-// Product.belongsTo(Type)
 
-// Product.hasMany(Basket_Product)
-// Basket_Product.belongsTo(Product)
+Type.hasMany(Producttt)
+Producttt.belongsTo(Type)
 
-// Genre.hasMany(Product)
-// Product.belongsTo(Genre)
+Producttt.hasMany(Basket_Product)
+Basket_Product.belongsTo(Producttt)
 
+Genre.hasMany(Producttt)
+Producttt.belongsTo(Genre)
 
-Type.hasMany(Productt)
-Productt.belongsTo(Type)
-
-Productt.hasMany(Basket_Product)
-Basket_Product.belongsTo(Productt)
-
-Genre.hasMany(Productt)
-Productt.belongsTo(Genre)
+// Type.belongsToMany(Genre)
+// Genre.belongsToMany(Type)
 
 
 module.exports ={
-    User, Basket, Productt, Basket_Product, Type, Genre
+    User, Basket, Producttt, Basket_Product, Type, Genre
 }

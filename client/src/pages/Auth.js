@@ -3,7 +3,7 @@ import React, { useContext, useState } from 'react';
 import { Button, Card, Container, Form, Row } from 'react-bootstrap';
 import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import { Context } from '..';
-import { registration } from '../http/userAPI';
+import { registration, loginn } from '../http/userAPI';
 import { LOGIN_ROUTE, REGISTRATION_ROUTE, SHOP_ROUTE } from '../utils/consts';
 
 const Auth = observer(() => {
@@ -21,7 +21,7 @@ const Auth = observer(() => {
         try{
             let data;
             if (isLogin){
-                data = await login(login, password)
+                data = await loginn(login, password)
             }else{
                 data = await registration(login, password)
             }

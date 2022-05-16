@@ -21,19 +21,19 @@ export const fetchGeners = async () =>{
     return data
 }
 
-export const createProduct = async (productt) =>{
-    const {data} = await $authHost.post('api/productt', productt)
+export const createProduct = async (producttt) =>{
+    const {data} = await $authHost.post('api/producttt', producttt)
     return data
 } 
 
-export const fetchProducts = async (typeId, generId, page, limit = 5) =>{
-    const {data} = await $host.get('api/productt', {params: {
-        typeId, generId, page, limit
+export const fetchProducts = async (typeId, genreId, page, limit = 5) =>{
+    const {data} = await $host.get('api/producttt', {params: {
+        typeId, genreId, page, limit
     }})
     return data
 }
 
 export const fetchOneProduct = async (id) =>{
-    const {data} = await $host.get('api/productt/' + id)
+    const {data} = await $host.get('api/producttt/' + id)
     return data
 }

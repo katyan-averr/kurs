@@ -7,16 +7,17 @@ import { fetchTypes, fetchGeners, createProduct } from "../../http/productAPI";
 
 
 const CreateProduct = observer( ({ show, onHide }) => {
-  const {productt} = useContext(Context)
+  const {producttt} = useContext(Context)
   const [name, setName] = useState('')
   const [author, setAuthor] = useState('')
   const [artist, setArtist] = useState('')
+  const [descrip, setDescrip] = useState('')
   const [price, setPrice] = useState(0)
   const [file, setFile] = useState(null)
 
   useEffect(() => {
-    fetchTypes().then(data => productt.setTypes(data))
-    fetchGeners().then(data => productt.setGeners(data))
+    fetchTypes().then(data => producttt.setTypes(data))
+    fetchGeners().then(data => producttt.setGeners(data))
 }, [])
 
   const selectFile = e => {
@@ -28,10 +29,11 @@ const CreateProduct = observer( ({ show, onHide }) => {
     formData.append('name', name)
     formData.append('author', author)
     formData.append('artist', artist)
+    formData.append('descrip', descrip)
     formData.append('price', `${price}`)
     formData.append('img', file)
-    formData.append('generId', productt.selectedGener.id)
-    formData.append('typeId', productt.selectedType.id)
+    formData.append('genreId', producttt.selectedGener.id)
+    formData.append('typeId', producttt.selectedType.id)
 
     createProduct(formData).then(data => onHide())
   }
@@ -46,22 +48,22 @@ const CreateProduct = observer( ({ show, onHide }) => {
       <Modal.Body>
           <Form>
               <Dropdown className="mt-2 mb-2">
-                <Dropdown.Toggle>{productt.selectedType.name || "Выберите тип"}</Dropdown.Toggle>
+                <Dropdown.Toggle>{producttt.selectedType.name || "Выберите тип"}</Dropdown.Toggle>
                 <Dropdown.Menu>
-                    {productt.types.map(type =>
+                    {producttt.types.map(type =>
                       <Dropdown.Item 
-                        onClick={() => productt.setSelectedType(type)} 
+                        onClick={() => producttt.setSelectedType(type)} 
                         key={type.id}>{type.name}
                       </Dropdown.Item>
                       )}
                 </Dropdown.Menu>
               </Dropdown>
               <Dropdown className="mt-2 mb-2">
-                <Dropdown.Toggle>{productt.selectedGener.name || "Выберите жанр"}</Dropdown.Toggle>
+                <Dropdown.Toggle>{producttt.selectedGener.name || "Выберите жанр"}</Dropdown.Toggle>
                 <Dropdown.Menu>
-                    {productt.genres.map(genres =>
+                    {producttt.genres.map(genres =>
                       <Dropdown.Item 
-                        onClick={() => productt.setSelectedGener(genres)} 
+                        onClick={() => producttt.setSelectedGener(genres)} 
                         key={genres.id}>{genres.name}
                       </Dropdown.Item>
                       )}
@@ -82,6 +84,11 @@ const CreateProduct = observer( ({ show, onHide }) => {
                 onChange={e => setAuthor(e.target.value)} 
                 className="mt-2" 
                 placeholder="Введите автора"/>
+                <Form.Control 
+                value={descrip}
+                onChange={e => setDescrip(e.target.value)} 
+                className="mt-2" 
+                placeholder="Введите краткое описание"/>
               <Form.Control 
                 value={price}
                 onChange={e => setPrice(Number(e.target.value))} 

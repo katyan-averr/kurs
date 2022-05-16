@@ -5,11 +5,11 @@ import { Context } from '..';
 import ProductItem from './ProductItem'
 
 const ProductList = observer( () => {
-    const {productt} = useContext(Context)
+    const {producttt} = useContext(Context)
     return (
         <Row className='d-flex'>
-            {productt.productts.map(productt =>
-                <ProductItem key={productt.id} productt={productt}/>
+            {producttt.producttts.map(producttt =>
+                <ProductItem key={producttt.id} producttt={producttt}/>
             )}
         </Row>
     );

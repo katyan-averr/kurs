@@ -1,10 +1,10 @@
 import { observer } from 'mobx-react-lite';
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { Button, Form, FormControl, ListGroup } from 'react-bootstrap';
 import { Context } from '..';
 
 const Search = observer( () => {
-    const {productt} = useContext(Context)
+    const {producttt} = useContext(Context)
     return (
 
 <Form className="d-flex mb-3 mt-4">

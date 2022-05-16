@@ -8,6 +8,6 @@ const genreRouter = require('./genreRouter')
 router.use('/user', userRouter)
 router.use('/type', typeRouter)
 router.use('/genre', genreRouter)
-router.use('/productt', productRouter)
+router.use('/producttt', productRouter)
 
 module.exports = router
