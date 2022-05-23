@@ -7,6 +7,9 @@ import { useContext, useEffect, useState } from 'react';
 import { Context } from '.';
 import { check } from './http/userAPI';
 import { Spinner } from 'react-bootstrap';
+import { Provider } from 'react-redux';
+import { store } from './redux';
+
 
 const App = observer(() =>{
   const {user} = useContext(Context)
@@ -26,10 +29,12 @@ const App = observer(() =>{
   }
 
   return (
+    <Provider store={store}>
     <BrowserRouter>
       <NavBar />
       <AppRouter />
     </BrowserRouter>
+    </Provider>
   );
 });
 

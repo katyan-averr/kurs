@@ -4,8 +4,15 @@ import { Card, Col, Image } from 'react-bootstrap';
 import { useParams } from "react-router-dom";
 import { fetchOneProduct} from '../http/productAPI';
 import AddBasket from "../components/models/AddBasket";
+import { useDispatch } from 'react-redux';
+import { setItemInCart } from '../redux/cart/reducer';
 
 const ProductPage = () => {
+    const dispatch = useDispatch();
+    const handleClick = (e) => {
+        e.stopPropagation();
+        dispatch(setItemInCart(producttt));
+    }
     const [AddBasketVisible, setAddBasketVisible] = useState(false);
     const [producttt, setProduct] = useState({info: []})
     const {id} = useParams()
@@ -32,7 +39,7 @@ const ProductPage = () => {
                     <Card style={{marginTop:"100px"}} className='mr-3 d-flex flex-column justify-content-around '>
                         <div>
                             <h2 style={{marginLeft:"10px"}}>{producttt.price} руб.
-                            <Button style={{marginLeft:"390px"}} variant='outline-dark' onClick={() => setAddBasketVisible(true)}>В корзину</Button></h2>
+                            <Button style={{marginLeft:"390px"}} variant='outline-dark' onClick={handleClick}>В корзину</Button></h2>
                             <AddBasket show={AddBasketVisible} onHide={() => setAddBasketVisible(false)}/>
                         </div>
                     </Card>

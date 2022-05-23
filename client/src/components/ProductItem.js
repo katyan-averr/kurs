@@ -10,8 +10,8 @@ const ProductItem =  ({producttt}) => {
       };
     return (
         <Col md={3} className={"mt-4"} onClick={() => redirect(PRODUCT_ROUTE + '/' + producttt.id)}>
-            <Card style ={{width: 191, cursor:'pointer'}} border={"black"}>
-                <Image width={190} height={190} src={process.env.REACT_APP_API_URL + producttt.img}/>
+            <Card style ={{width: 230, cursor:'pointer'}} border={"black"}>
+                <Image width={229} height={229} src={process.env.REACT_APP_API_URL + producttt.img}/>
                 <div className='text-black-50 d-flex justify-content-between align-items-center'>
                     <div>{producttt.author}</div>
                     

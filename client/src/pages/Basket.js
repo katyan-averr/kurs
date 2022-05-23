@@ -1,47 +1,35 @@
-import React, { useState } from "react";
-import { Button, Table } from "react-bootstrap";
+import React, { useContext, useState } from "react";
+import { Button, Col, Container, Row, Table } from "react-bootstrap";
 import BuyProduct from "../components/models/BuyProduct";
 import {useNavigate} from "react-router-dom"
+import { useSelector } from "react-redux";
+import { Context } from "..";
+import { CartBasket } from "../components/CartBasket";
 
 const Basket = () => {
-  const [BuyProductVisible, setBuyProductVisible] = useState(false);
-
+    const {producttt} = useContext(Context)
+    const [BuyProductVisible, setBuyProductVisible] = useState(false);
+    const items = useSelector(state => state.cart.itemsInCart);
+    const totalPrice = items.reduce((acc, producttt) => acc += producttt.price, 0)
   return (
     <div>
-      <Table
-        style={{ width: "1200px", marginLeft: "170px" }}
-        className="mt-3"
-        striped
-        bordered
-        hover
-      >
-        <thead>
-          <tr>
-            <th>№</th>
-            <th>Название</th>
-            <th>Исполнитель</th>
-            <th>Автор</th>
-            <th>Цена</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>1</td>
-            <td>Сборник №1</td>
-            <td>Фредерик Шопен</td>
-            <td>Фредерик Шопен</td>
-            <td>500руб.</td>
-          </tr>
-          <tr>
-            <td>2</td>
-            <td>Вернуться</td>
-            <td>Екатерина Яшникова</td>
-            <td>Екатерина Яшникова</td>
-            <td>400руб.</td>
-          </tr>
-        </tbody>
-      </Table>
-      <h3 style={{ marginLeft: "1175px" }}>Итого: 900руб.</h3>
+        {
+           
+        }
+        <Container>
+            <Row className='mt-2'> 
+                <Col md={12}>
+                    <Row className="mt-3">
+                    {
+                     items.length > 0 ? items.map(producttt => <CartBasket key={producttt.name} price={producttt.price} name={producttt.name} author={producttt.author} id={producttt.id} img={producttt.img}/>) : 'Корзина пуста'
+                    }
+                    </Row>
+                </Col>
+            </Row>
+        </Container>
+
+
+      <h3 style={{ marginLeft: "1175px" }}>Итого: { totalPrice } руб.</h3>
       <Button
         style={{ marginLeft: "1223px" }}
         onClick={() => setBuyProductVisible(true)}
